@@ -1,0 +1,106 @@
+#landing{
+  width: 100vw;
+  min-height: 100vh;
+  background-image: var(--gradient);
+  color: var(--text-white);
+
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+
+  .container {
+    @media (min-width: 540px) {
+      background-image: url("../../../assets/illustration.svg");
+      background-size: 0%;
+      background-repeat: no-repeat;
+    }
+    @media (orientation: portrait) { background-position: center bottom; }
+    @media (min-width: 540px) and (orientation: portrait) { background-size: 40%; }
+    @media (min-width: 768px) and (orientation: portrait) { background-size: 40%; }
+    @media (min-width: 992px) and (orientation: portrait) { background-size: 50%; }
+
+    @media (orientation: landscape) { background-position: 70% bottom; }
+    @media (min-width: 992px) and (orientation: landscape) { background-size: contain; }
+  }
+
+  header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10vh;
+    text-align: center;
+
+    img { margin-bottom: 1rem;}
+
+    @media (min-width: 768px) and (orientation: landscape) {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: right;
+
+      img { margin-bottom: 0; }
+    }
+  }
+
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+
+    .content {
+      width: 100%;
+      margin-bottom: 2rem;
+
+      .main-content {
+        font-weight: 800;
+        font-size: clamp(4rem, 10vw, 5rem);
+        line-height: clamp(4rem, 10vw, 5rem);
+        margin-bottom: 1rem;
+
+      }
+
+      @media (min-width: 600px) { width: 80%; }
+
+    }
+
+
+    .btn {
+      background-color: var(--yellow);
+      width: 3rem;
+      height: 3rem;
+
+      fa-icon { color: darken(#FFD666, 50%); }
+
+      &:hover {
+        background-color: lighten($color: #15C3D6, $amount: 30%);
+
+        fa-icon { color: darken(#15C3D6, 50%); }
+      }
+
+      @media (min-width: 600px) {
+        width: 4rem;
+        height: 4rem;
+      }
+    }
+
+
+    @media (min-width: 992px) and (orientation: landscape) {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      text-align: left;
+
+      .content {
+        width: 40%;
+        margin-bottom: 0
+      }
+    }
+    @media (min-width: 1200px) and (orientation: landscape) {
+      .content { width: 30%; }
+    }
+  }
+}
