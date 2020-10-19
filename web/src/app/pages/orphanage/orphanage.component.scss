@@ -1,0 +1,8 @@
+#orphanage {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 992px) and (orientation: landscape) {
+      flex-direction: row;
+    }
+}

@@ -38,7 +38,11 @@
       </div>
     </div>
 
-    <button type="button" class="btn  slide-toggle" (click)="slideToggle()">
+    <button
+      type="button"
+      class="btn  slide-toggle"
+      (click)="slideToggle()"
+    >
       <fa-icon [icon]="faSlideToggleAside"></fa-icon>
     </button>
 
@@ -50,7 +54,7 @@
   </main>
 
 
-  <button type="button" class="btn  add-orphanage">
+  <button type="button" class="btn  add-orphanage" routerLink="../orfanato">
     <fa-icon [icon]="faPlus"></fa-icon>
   </button>
 

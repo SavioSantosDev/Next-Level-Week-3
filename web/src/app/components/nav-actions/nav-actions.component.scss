@@ -1,0 +1,53 @@
+#nav-actions {
+  position: fixed;
+  width: 100%;
+  padding: 1rem;
+  background-image: var(--gradient);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .theme {
+    order: 2;
+
+    label {
+      width: 48px;
+      height: 56px;
+      background-position: center;
+      background-size: cover;
+      display: block;
+      cursor: pointer;
+    }
+
+    input#theme { display: none; }
+
+    input#theme:checked ~ label { background-image: url('../../../assets/marker-dark.svg'); }
+    input#theme:not(:checked) ~ label { background-image: url('../../../assets/marker.svg'); }
+  }
+
+  .btn.on-back {
+    order: 1;
+
+    width: 3rem;
+    height: 3rem;
+    background-color: darken(#15C3D6, 5%);
+
+    fa-icon { color: white; }
+
+    &:hover {
+      cursor: pointer;
+      background-color: lighten(#15C3D6, 5%);
+    }
+  }
+
+  @media (min-width: 992px) and (orientation: landscape) {
+    width: auto;
+    height: 100%;
+    flex-direction: column;
+
+    .theme { order: 1; }
+    .btn.on-back { order: 2; }
+  }
+
+}

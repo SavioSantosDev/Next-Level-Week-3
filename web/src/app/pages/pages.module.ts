@@ -5,12 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
+import { ComponentsModule } from '../components/components.module';
 import { LandingComponent } from './landing/landing.component';
 import { OrphanagesMapComponent } from './orphanages-map/orphanages-map.component';
 import { OrphanageComponent } from './orphanage/orphanage.component';
 import { AddOrphanageComponent } from './add-orphanage/add-orphanage.component';
-
-
 
 @NgModule({
   declarations: [
@@ -24,7 +23,8 @@ import { AddOrphanageComponent } from './add-orphanage/add-orphanage.component';
     RouterModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    LeafletModule
+    LeafletModule,
+    ComponentsModule
   ]
 })
 export class PagesModule { }
