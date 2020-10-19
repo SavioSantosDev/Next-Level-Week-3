@@ -1,0 +1,137 @@
+#orphanage-map{
+  min-width: 100vw;
+  min-height: 100vh;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+
+  // 1º Elemento do flex box (Mobile)
+  .content-box-top {
+    padding: 2rem 1rem 0;
+    background-image: var(--gradient);
+    text-align: center;
+    color: white;
+
+    .content-box {
+
+      max-height: 1500px;   // Um valor que nunca irá ser alcançado!!
+      overflow-y: hidden;
+      -webkit-transition: max-height 0.8s linear;
+      transition: max-height 1s linear;
+
+      &.collapsed { max-height: 0; }
+
+      .content {
+        margin-bottom: 2rem;
+
+        .title {
+          margin-bottom: 1rem;
+          font-size: clamp(2rem, 5vw, 2.5rem);
+          line-height: clamp(2rem, 5vw, 2.5rem);
+          font-weight: 800;
+        }
+      }
+    }
+
+    .btn.slide-toggle {
+      width: 2rem;
+      height: 2rem;
+      background-color: var(--green);
+      border: 2px solid var(--background);
+      transform: translateY(50%);
+      margin-left: auto;
+
+      fa-icon { color: white; }
+    }
+  }
+
+
+  // 1º Elemento do flex box (Tablet - landscape - e Desktop)
+  .content-box-aside {
+
+    display: none;
+    background-image: var(--gradient);
+    color: white;
+    padding: 8vh 2vw;
+
+    .content-box {
+      flex: 1 0 0%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      max-width: 25vw;
+      overflow-x: hidden;
+      -webkit-transition: max-width 0.8s linear;
+      transition: max-width .2s linear;
+
+      &.collapsed { max-width: 0; }
+
+      .title {
+        margin-bottom: 1rem;
+        font-size: clamp(2rem, 5vw, 2.5rem);
+        line-height: clamp(2rem, 5vw, 2.5rem);
+        font-weight: 800;
+      }
+    }
+
+    position: relative;
+
+    .btn.slide-toggle {
+      position: absolute;
+      left: 100%;
+      bottom: 3rem;
+      transform: translateX(-50%);
+
+      width: 3rem;
+      height: 3rem;
+      background-color: var(--green);
+      border: 2px solid var(--background);
+
+      fa-icon { color: white; }
+    }
+  }
+
+
+  // 2º Elemento do flex box
+  #map {
+    flex: 1 0 0%;
+    min-height: 400px;
+    background: pink;
+  }
+
+
+  // ELEMENTO FIXADO
+  .btn.add-orphanage {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--blue);
+
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+
+    fa-icon { color: white; }
+  }
+
+
+  @media (min-width: 768px) and (orientation: landscape) and (min-height: 600px) {
+
+    flex-direction: row;
+    align-items: stretch;
+
+    .content-box-top { display: none; }
+    .content-box-aside { display: flex; }
+
+    .btn.add-orphanage {
+      width: 4rem;
+      height: 4rem;
+      bottom: 2rem;
+      right: 2rem;
+    }
+  }
+
+}

@@ -1,5 +1,57 @@
-<!--
-npm install leaflet
-npm install @asymmetrik/ngx-leaflet
-npm install --save-dev @types/leaflet
--->
+<section id="orphanage-map">
+
+  <div class="content-box-top">
+
+    <div class="content-box" [class.collapsed]="collapsed">
+
+      <div class="content">
+        <h1 class="title">Escolha um orfanato no mapa</h1>
+        <div class="subtitle">Muitas crianças estão esperando a sua visita :)</div>
+      </div>
+
+      <div class="location">
+        <strong>Bahia</strong>
+        <div>Vitória da Conquista</div>
+      </div>
+    </div>
+
+    <button type="button" class="btn  slide-toggle" (click)="slideToggle()">
+      <fa-icon [icon]="faSlideToggleTop"></fa-icon>
+    </button>
+
+  </div>
+
+
+  <div class="content-box-aside">
+
+    <div class="content-box" [class.collapsed]="collapsed">
+      <img src="../../../assets/marker.svg" alt="happy">
+
+      <div class="content">
+        <h1 class="title">Escolha um orfanato no mapa</h1>
+        <div class="subtitle">Muitas crianças estão esperando a sua visita :)</div>
+      </div>
+
+      <div class="location">
+        <strong>Bahia</strong>
+        <div>Vitória da Conquista</div>
+      </div>
+    </div>
+
+    <button type="button" class="btn  slide-toggle" (click)="slideToggle()">
+      <fa-icon [icon]="faSlideToggleAside"></fa-icon>
+    </button>
+
+  </div>
+
+
+  <main id="map">
+
+  </main>
+
+
+  <button type="button" class="btn  add-orphanage">
+    <fa-icon [icon]="faPlus"></fa-icon>
+  </button>
+
+</section>

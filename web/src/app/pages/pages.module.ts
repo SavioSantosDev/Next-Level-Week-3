@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { LandingComponent } from './landing/landing.component';
 import { OrphanagesMapComponent } from './orphanages-map/orphanages-map.component';
@@ -22,7 +23,8 @@ import { AddOrphanageComponent } from './add-orphanage/add-orphanage.component';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    LeafletModule
   ]
 })
 export class PagesModule { }
