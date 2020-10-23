@@ -1,8 +1,102 @@
-#orphanage {
-    display: flex;
-    flex-direction: column;
+@import "variables";
 
-    @media (min-width: 992px) and (orientation: landscape) {
-      flex-direction: row;
+#orphanage {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--shapes);
+  padding-bottom: 2rem;
+
+  h1 { font-size: clamp(24px, 4vw, 36px); margin-bottom: 1rem; }
+  h2 { font-size: clamp(20px, 4vw, 32px); margin-bottom: 1rem; }
+
+
+  .block {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+
+    @media (min-width: 768px) { padding: 0 2rem; }
+    @media (min-width: 992px) { padding: 0 3rem; }
+    @media (min-width: 1200px) { padding: 0 4rem; }
+  }
+
+  .map-routes {
+    border: 1px solid var(--lines);
+    border-radius: 1rem;
+    background-color: var(--low-blue);
+    overflow: hidden;
+
+    .map {
+      background: pink;
+      min-height: 40vh;
     }
+
+    button {
+      cursor: pointer;
+      display: block;
+      text-align: center;
+      padding: 1rem;
+      margin: 0 auto;
+
+      font-weight: bold;
+      font-size: 20px;
+      background-color: transparent;
+      color: darken($blue, 5%);
+      border: none;
+    }
+  }
+
+  .division {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--lines);
+  }
+
+  .orphanage-infos {
+    display: flex;
+
+    .card {
+      width: 100%;
+      border-radius: 1rem;
+      padding: 2rem 1rem;
+      font-size: 24px;
+
+      img {
+        display: block;
+        margin-bottom: 1rem;
+      }
+      h3 { font-weight: 600; }
+
+      &.openning-hours {
+        background-color: var(--low-blue);
+        border: 1px solid var(--blue);
+        color: var(--blue);
+        margin-right: 1rem;
+      }
+      &.open-on-weekends {
+        background-color: var(--low-green);
+        border: 1px solid var(--green);
+        color: var(--green);
+      }
+      &.close-on-weekends {
+        background-color: var(--low-red);
+        border: 1px solid var(--red);
+        color: var(--red);
+      }
+    }
+  }
+
+
+  .btn.contact {
+    width: 100%;
+    background-color: var(--green);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 1rem;
+
+    img { margin-right: .5rem; }
+
+    &:hover { background-color: darken($green, 5%); }
+  }
 }

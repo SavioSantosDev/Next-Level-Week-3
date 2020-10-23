@@ -1,1 +1,83 @@
-<p>add-orphanage works!</p>
+<section id="add-orphanage">
+  <form>
+
+    <fieldset>
+      <legend><h1>Dados</h1></legend>
+
+      <div class="form-control">
+        <div class="map-routes">
+          <div class="map"></div>
+          <button type="button">Ver rotas no Google Maps</button>
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label for="name">Nome</label>
+        <input type="text" name="name" id="name" required aria-required="true" />
+      </div>
+
+      <div class="form-control">
+        <label for="about">Sobre</label><small>Máximo de 300 carácteres</small>
+        <textarea name="about" id="about" rows="3" required aria-required="true" maxlength="300"></textarea>
+      </div>
+
+      <div class="form-control">
+        <label for="phone">Número de WhatsApp</label>
+        <input type="tel" name="phone" id="phone" required aria-required="true" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"/>
+      </div>
+
+      <div class="form-control  upload-images">
+        <label for="images" class="label-only">Fotos</label>
+
+        <!-- Botão de adicionar imagem e o container para os previews das imagens -->
+        <div class="uploads-container">
+          <div *ngFor="let imagePreview of imagesPreview; index as i" class="upload-item">
+            <button class="remove-item" (click)="removeImage(i)"><fa-icon [icon]="faTimes"></fa-icon></button>
+            <img [src]="imagePreview" alt="upload-img">
+          </div>
+
+          <label for="images" class="add-images btn"><fa-icon [icon]="faPlus"></fa-icon></label>
+        </div>
+
+        <input
+          type="file"
+          accept="image/*"
+          name="images"
+          id="images"
+          required
+          aria-required="true"
+          multiple
+          #images
+          (change)="onChange(images.files)"
+        />
+
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><h1>Visitas</h1></legend>
+
+      <div class="form-control">
+        <label for="instructions">Instruções</label>
+        <textarea name="instructions" id="instructions" rows="3" required aria-required="true" maxlength="300"></textarea>
+      </div>
+
+      <div class="form-control">
+        <label for="openning_hours">Horário de visitas</label>
+        <input type="text" name="openning_hours" id="openning_hours" required aria-required="true" />
+      </div>
+
+      <div class="form-control open_on_weekends">
+        <label for="open_on_weekends">Atende final de semana?</label>
+        <input type="checkbox" name="open_on_weekends" id="open_on_weekends" required aria-required="true" />
+        <label for="open_on_weekends" class="label-button"><span></span></label>
+      </div>
+    </fieldset>
+
+
+    <button type="submit" class="btn on-submit">
+      Confirmar
+    </button>
+
+  </form>
+</section>

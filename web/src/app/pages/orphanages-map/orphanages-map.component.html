@@ -25,7 +25,7 @@
   <div class="content-box-aside">
 
     <div class="content-box" [class.collapsed]="collapsed">
-      <img src="../../../assets/marker.svg" alt="happy">
+      <img src="../../../assets/icons/marker.svg" alt="happy">
 
       <div class="content">
         <h1 class="title">Escolha um orfanato no mapa</h1>
@@ -49,12 +49,12 @@
   </div>
 
 
-  <main id="map">
+  <main id="map" routerLink="../orfanato">
 
   </main>
 
 
-  <button type="button" class="btn  add-orphanage" routerLink="../orfanato">
+  <button type="button" class="btn  add-orphanage" routerLink="../orfanato/cadastro">
     <fa-icon [icon]="faPlus"></fa-icon>
   </button>
 

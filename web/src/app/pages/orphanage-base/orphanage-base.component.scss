@@ -1,0 +1,51 @@
+#orphanage-base {
+// 2rem 48px 56px
+  display: flex;
+  flex-direction: column;
+
+  // NavBar modo top:   ALTURA = 32PX + 56PX = 88PX
+  // NavBar modo aside: LARGURA = 32PX + 48PX = 80PX
+
+  .ghost-nav-actions {
+    height: 88px;
+
+    @media (max-height: 480px) and (orientation: landscape) { display: none; }
+  }
+
+  main {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 600px) {
+    main {
+      max-width: 576px;
+      border-radius: 2rem;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    main { max-width: 720px; width: 72% }
+  }
+
+  @media (min-width: 992px) {
+    main { max-width: 960px; width: 64%; }
+  }
+
+  @media (min-width: 1200px) {
+    main { max-width: 1140px; width: 56%; }
+  }
+
+
+  // Nestes breakpoints que a navbar quebra pro lado
+  @media (min-width: 992px) and (orientation: landscape) {
+
+    flex-direction: row;
+    align-items: stretch; // Vai fazer com que o ghost fique da mesma altura que o main
+
+    .ghost-nav-actions { width: 80px; }
+  }
+}

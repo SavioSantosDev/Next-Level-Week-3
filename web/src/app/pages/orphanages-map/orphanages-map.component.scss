@@ -1,3 +1,5 @@
+@import "variables";
+
 #orphanage-map{
   min-width: 100vw;
   min-height: 100vh;
@@ -116,7 +118,7 @@
 
     fa-icon { color: white; }
 
-    &:hover { background-color: darken( #15C3D6, 5%); }
+    &:hover { background-color: darken( $blue, 5%); }
   }
 
 

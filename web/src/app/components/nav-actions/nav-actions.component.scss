@@ -22,8 +22,8 @@
 
     input#theme { display: none; }
 
-    input#theme:checked ~ label { background-image: url('../../../assets/marker-dark.svg'); }
-    input#theme:not(:checked) ~ label { background-image: url('../../../assets/marker.svg'); }
+    input#theme:checked ~ label { background-image: url('../../../assets/icons/marker-dark.svg'); }
+    input#theme:not(:checked) ~ label { background-image: url('../../../assets/icons/marker.svg'); }
   }
 
   .btn.on-back {
@@ -39,6 +39,10 @@
       cursor: pointer;
       background-color: lighten(#15C3D6, 5%);
     }
+  }
+
+  @media (max-height: 480px) and (orientation: landscape){
+    display: none;
   }
 
   @media (min-width: 992px) and (orientation: landscape) {

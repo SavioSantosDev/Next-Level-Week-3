@@ -1,3 +1,20 @@
+@import "variables";
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
+
+  @media (min-width: 600px) { max-width: 576px; }
+
+  @media (min-width: 768px) { max-width: 720px; }
+
+  @media (min-width: 992px) { max-width: 960px; }
+
+  @media (min-width: 1200px) { max-width: 1152px; }
+}
+
+
 #landing{
   width: 100vw;
   min-height: 100vh;
@@ -73,12 +90,12 @@
       width: 3rem;
       height: 3rem;
 
-      fa-icon { color: darken(#FFD666, 50%); }
+      fa-icon { color: darken($yellow, 50%); }
 
       &:hover {
-        background-color: lighten($color: #15C3D6, $amount: 30%);
+        background-color: lighten($blue, 30%);
 
-        fa-icon { color: darken(#15C3D6, 50%); }
+        fa-icon { color: darken($blue, 50%); }
       }
 
       @media (min-width: 600px) {

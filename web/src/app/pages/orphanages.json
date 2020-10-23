@@ -10,12 +10,12 @@
     "open_on_weekends": true,
     "images": [
       {
-        "id": 3,
-        "url": "http://localhost:3333/uploads/1602796336504-bg1.jpg"
+        "id": 1,
+        "url": "assets/orphanages-images/img (1).jpg"
       },
       {
-        "id": 4,
-        "url": "http://localhost:3333/uploads/1602796336517-background3.jpg"
+        "id": 2,
+        "url": "assets/orphanages-images/img (2).jpg"
       }
     ]
   },
@@ -30,12 +30,12 @@
     "open_on_weekends": false,
     "images": [
       {
-        "id": 5,
-        "url": "http://localhost:3333/uploads/1602802065674-bg1.jpg"
+        "id": 3,
+        "url": "assets/orphanages-images/img (3).jpg"
       },
       {
-        "id": 6,
-        "url": "http://localhost:3333/uploads/1602802066465-background3.jpg"
+        "id": 4,
+        "url": "assets/orphanages-images/img (4).jpg"
       }
     ]
   }
