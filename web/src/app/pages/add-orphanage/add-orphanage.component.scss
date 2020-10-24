@@ -190,6 +190,8 @@
     &:hover {
       background-color: darken($green, 5%);
     }
+
+    &:disabled { opacity: .7; }
   }
 
 }

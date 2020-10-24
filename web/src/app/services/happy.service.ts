@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
-import { Orphanage } from 'src/models/Orphanage';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -10,13 +11,18 @@ import { Orphanage } from 'src/models/Orphanage';
 })
 export class HappyService {
 
+  private API = `${environment.API}orphanages`;
+
   constructor(
     private http: HttpClient
   ) { }
 
-  submit(): void {
 
-    console.log('upload');
+  createOrphanage(  orphanageData: any  ): Observable<unknown> {
+    return this.http.post(this.API, orphanageData)
+      .pipe(
+        take(1)
+      );
   }
 
 }

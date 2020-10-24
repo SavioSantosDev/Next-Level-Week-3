@@ -1,9 +1,10 @@
 <section id="add-orphanage">
-  <form>
+  <form [formGroup]='formulario'  (ngSubmit)="onSubmit()">
 
-    <fieldset>
+    <fieldset formGroupName="orphanage_data">
       <legend><h1>Dados</h1></legend>
 
+      <!-- LATITUDE LONGITUDE -->
       <div class="form-control">
         <div class="map-routes">
           <div class="map"></div>
@@ -11,19 +12,22 @@
         </div>
       </div>
 
+      <!-- NAME -->
       <div class="form-control">
         <label for="name">Nome</label>
-        <input type="text" name="name" id="name" required aria-required="true" />
+        <input type="text" formControlName="name" id="name" aria-required="true" />
       </div>
 
+      <!-- ABOUT -->
       <div class="form-control">
         <label for="about">Sobre</label><small>Máximo de 300 carácteres</small>
-        <textarea name="about" id="about" rows="3" required aria-required="true" maxlength="300"></textarea>
+        <textarea formControlName="about" id="about" rows="3" aria-required="true"></textarea>
       </div>
 
+      <!-- PHONE -->
       <div class="form-control">
         <label for="phone">Número de WhatsApp</label>
-        <input type="tel" name="phone" id="phone" required aria-required="true" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"/>
+        <input type="tel" formControlName="phone" id="phone" aria-required="true"/>
       </div>
 
       <div class="form-control  upload-images">
@@ -42,7 +46,6 @@
         <input
           type="file"
           accept="image/*"
-          name="images"
           id="images"
           required
           aria-required="true"
@@ -54,30 +57,47 @@
       </div>
     </fieldset>
 
-    <fieldset>
+    <fieldset formGroupName="visits">
       <legend><h1>Visitas</h1></legend>
 
       <div class="form-control">
         <label for="instructions">Instruções</label>
-        <textarea name="instructions" id="instructions" rows="3" required aria-required="true" maxlength="300"></textarea>
+        <textarea formControlName="instructions" id="instructions" rows="3" aria-required="true"></textarea>
       </div>
 
       <div class="form-control">
         <label for="openning_hours">Horário de visitas</label>
-        <input type="text" name="openning_hours" id="openning_hours" required aria-required="true" />
+        <input type="text" formControlName="openning_hours" id="openning_hours" aria-required="true" />
       </div>
 
       <div class="form-control open_on_weekends">
         <label for="open_on_weekends">Atende final de semana?</label>
-        <input type="checkbox" name="open_on_weekends" id="open_on_weekends" required aria-required="true" />
+        <input type="checkbox" formControlName="open_on_weekends" id="open_on_weekends" aria-required="true" />
         <label for="open_on_weekends" class="label-button"><span></span></label>
       </div>
     </fieldset>
 
 
-    <button type="submit" class="btn on-submit">
+    <button type="submit" class="btn on-submit" [disabled]="!formulario.valid">
       Confirmar
     </button>
 
   </form>
+
+
+  <!-- DEBUG -->
+  <div style="margin-top: 20px">
+    <h1>
+      Detalhes do form
+    </h1>
+
+    <pre>
+      Form válido: {{ formulario.valid }}
+    </pre>
+
+    <pre>
+      Valores: <br>: {{ formulario.value | json }}
+    </pre>
+  </div>
+
 </section>

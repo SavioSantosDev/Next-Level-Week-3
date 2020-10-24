@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+
+import { HappyService } from 'src/app/services/happy.service';
 
 @Component({
   selector: 'app-add-orphanage',
@@ -9,43 +11,88 @@ import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class AddOrphanageComponent implements OnInit {
 
-  faPlus = faPlus;
-  faTimes = faTimes;
+  // Icones
+  faPlus = faPlus;  // Adicionar imagem
+  faTimes = faTimes;  // Remover imagem
 
-  orphanage: any = {
-    name: null,
-    latitude: null,
-    longitude: null,
-    about: null,
-    instructions: null,
-    opening_hours: null ,
-    open_on_weekends: true,
-    // images: [
-    //   {
-    //     "url": "assets/orphanages-images/img (1).jpg"
-    //   },
-    //   {
-    //     "url": "assets/orphanages-images/img (2).jpg"
-    //   }
-    // ]
-  };
+  // Formulário
+  formulario: FormGroup;
 
   imagesUpload: Set<File> = new Set();  // As que vão para o servidor
   imagesPreview: (string | ArrayBuffer)[] = [];  // As que vão ficar a mostra para o usuário
 
+
   constructor(
+    private formBuilder: FormBuilder,
+    private happyService: HappyService,
   ) { }
 
-  ngOnInit(): void {
-  }
 
-  controlValid(): boolean {
-    return false;
+  ngOnInit(): void {
+
+    const phoneRegExp = /(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/g;
+
+    // Construindo o formulário
+    this.formulario = this.formBuilder.group({
+
+      orphanage_data: this.formBuilder.group({
+        name: [ null, [ Validators.required ] ],
+        about: [ null, [ Validators.required ] ],
+        phone: [ null, [ Validators.required, Validators.pattern(phoneRegExp) ] ],
+        // latitude: [ null ],
+        // longitude: [ null ],
+      }),
+
+      visits: this.formBuilder.group({
+        instructions: [ null, [ Validators.required, Validators.maxLength(300) ] ],
+        openning_hours: [ null, [ Validators.required ] ],
+        open_on_weekends: [ false, [ Validators.required ] ],
+      }),
+
+    });
+
   }
 
 
   /**
-   * Atualizará a lista de imagens para upload e para preview
+   * Método que irá fazer as requizições com o servidor
+   */
+  submit() {
+
+
+
+    console.log(valueSubmit);
+
+    // Enviar dados para o servidor, ja transformadas em json
+    this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit))
+    .subscribe(
+      dados => {
+        // Resetar o formulário
+        this.resetar();
+      }, ( erro: any ) => {
+        alert('Aconteceu um erro!');
+      }
+    );
+  }
+
+
+  /**
+   * Evento disparado quando o usuário submeter o formulário
+   */
+  onSubmit(): void {
+    if (  this.formulario.valid  ) {
+
+      const valueSubmit = this.formulario.value;
+      this.happyService.createOrphanage( valueSubmit );
+
+    } else {
+      this.verificarValidacoesForm(  this.formulario  );
+    }
+  }
+
+
+  /**
+   * Lidará com a lista de imagens para upload e para preview
    */
   onChange(  files: FileList  ): void {
 
@@ -64,16 +111,15 @@ export class AddOrphanageComponent implements OnInit {
 
         reader.onload = event => {
           const imageURL = reader.result;
-          this.imagesPreview.push(imageURL);
+          this.imagesPreview.push(imageURL);  // Add a imagem no array para preview
         };
       });
     }
-    console.log(  this.imagesUpload, this.imagesPreview  );
   }
 
 
   /**
-   * Remover os elementos no índice indicado.
+   * Remover os elementos de acordo o índice indicado.
    */
   removeImage(  index: number  ): void {
 
@@ -81,6 +127,7 @@ export class AddOrphanageComponent implements OnInit {
     this.imagesPreview.splice(index, 1);
 
     // Para imagesUpload que o um Set o esquema é diferente.
+    // Fará uma iteração com um contador, se o msm for igual ao index, deleta a image e sai do loop
     let count = 0;
     for (  const item of this.imagesUpload.values()  ) {
       if ( count === index ) {
@@ -89,14 +136,24 @@ export class AddOrphanageComponent implements OnInit {
       }
       count ++;
     }
-
-    console.log(  this.imagesUpload, this.imagesPreview  );
   }
 
 
-  onSubmit(  f: NgForm  ): void {
+  verificarValidacoesForm(  formGroup: FormGroup  ): void {
+    console.log('alguma coisa está errada');
+    // Object.keys(  formGroup.controls  ).forEach(  campo => {
+    //   // console.log(campo);
+    //   const controle = formGroup.get(campo);
+    //   controle.markAsTouched(); // No CSS o estilo é feito com o touched.
+    // });
+  }
 
-    console.log(f.value);
+
+  /**
+   * Resetar o formulário. Apagar todos os campos
+   */
+  formReset(): void {
+    this.formulario.reset();
   }
 
 }

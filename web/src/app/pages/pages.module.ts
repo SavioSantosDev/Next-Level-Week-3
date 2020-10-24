@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
@@ -23,7 +23,7 @@ import { OrphanageBaseComponent } from './orphanage-base/orphanage-base.componen
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     LeafletModule,
     ComponentsModule

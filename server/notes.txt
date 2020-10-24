@@ -1,0 +1,31 @@
+NODE
+
+1 - Express e @types
+
+2 - TypeScript como dependencia de desenvolvimento
+
+3 - NPX tsc --init, para inicializar o tsconfig
+
+4 - Instalar o ts-node-dev como dependencia de desenvolvimento
+    - Adicionar o seguinte script no package:
+        "dev": "ts-node-dev src/server.ts"
+        . --transpile-only - O próprio vscode faz as correções
+        . --ignore-watch node_modules
+
+5 - Typeorm para lidar com o 3 nível de abstração no banco de dados
+
+6 - Instalar um banco de dados.
+
+7 - Multer e @types
+
+npm i express-async-errors
+npm i yup e o types
+npm i cors, types
+
+
+Configurações no tsconfig.json
+
+"target": "es2017",
+"strictPropertyInitialization": false,
+"experimentalDecorators": true,
+"emitDecoratorMetadata": true,
