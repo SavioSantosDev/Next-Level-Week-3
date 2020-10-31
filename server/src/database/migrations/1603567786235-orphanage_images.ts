@@ -4,7 +4,7 @@ export class orphanageImages1603567786235 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'orphanage_images',
+            name: 'orphanages_images',
             columns: [
                 {
                     name: 'id',
@@ -25,7 +25,7 @@ export class orphanageImages1603567786235 implements MigrationInterface {
             ],
             foreignKeys: [
                 {
-                    name: 'OrphanageImages',
+                    name: 'orphanage_images',
                     columnNames: ['orphanage_id'],
                     referencedTableName: 'orphanages',
                     referencedColumnNames: ['id'],
@@ -37,7 +37,7 @@ export class orphanageImages1603567786235 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('orphanage_images')
+        await queryRunner.dropTable('orphanages_images')
     }
 
 }

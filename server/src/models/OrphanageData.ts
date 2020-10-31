@@ -9,6 +9,9 @@ export default class OrphanageData {
     id: number;
 
     @Column()
+    about: string;
+
+    @Column()
     phone: string;
 
     @Column()
@@ -16,11 +19,8 @@ export default class OrphanageData {
 
     @Column()
     longitude: number;
-    
-    @Column()
-    about: string;
 
-    @OneToOne(() => Orphanage, orphanage => orphanage.orphanageData)
-    @JoinColumn({name: 'orphanage_id'})
+    @OneToOne(() => Orphanage, orphanage => orphanage.orphanage_data)
+    @JoinColumn({ name: 'orphanage_id' })
     orphanage: Orphanage;
 }

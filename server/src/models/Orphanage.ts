@@ -14,24 +14,22 @@ export default class Orphanage {
     @Column()
     name: string;
 
-    // Os relacionamentos com as outras entidades serão bidimensionais.
-
     // Dados do orfanato
     @OneToOne(() => OrphanageData, orphanageData => orphanageData.orphanage, {
         cascade: ['insert', 'update']
     })
-    orphanageData: OrphanageData;
+    orphanage_data: OrphanageData;
 
     // Visitas
     @OneToOne(() => OrphanageVisits, orphanageVisits => orphanageVisits.orphanage, {
         cascade: ['insert', 'update']
     })
-    orphanageVisits: OrphanageVisits;
-    
+    orphanage_visits: OrphanageVisits;
+
     // Images
     @OneToMany(() => OrphanageImages, orphanageImages => orphanageImages.orphanage, {
         cascade: ['insert', 'update']
     })
     @JoinColumn({ name: 'orphanage_id' })
-    orphanageImages: OrphanageImages[];
+    orphanage_images: OrphanageImages[];
 }

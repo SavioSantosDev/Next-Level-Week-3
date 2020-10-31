@@ -4,7 +4,7 @@ export class orphanageVisits1603567767212 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'orphanage_visits',
+            name: 'orphanages_visits',
             columns: [
                 {
                     name: 'id',
@@ -19,7 +19,7 @@ export class orphanageVisits1603567767212 implements MigrationInterface {
                     type: 'text',
                 },
                 {
-                    name: 'opening_hours',
+                    name: 'openning_hours',
                     type: 'varchar',
                 },
                 {
@@ -34,7 +34,7 @@ export class orphanageVisits1603567767212 implements MigrationInterface {
             ],
             foreignKeys: [
                 {
-                    name: 'OphanageVisits',
+                    name: 'orphanage_visits',
                     columnNames: ['orphanage_id'],
                     referencedTableName: 'orphanages',
                     referencedColumnNames: ['id'],
@@ -46,7 +46,7 @@ export class orphanageVisits1603567767212 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('orphanage_visits');
+        await queryRunner.dropTable('orphanages_visits');
     }
 
 }

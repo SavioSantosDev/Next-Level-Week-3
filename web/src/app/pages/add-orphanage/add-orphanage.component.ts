@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
 
 import { HappyService } from 'src/app/services/happy.service';
+import Orphanage from 'src/models/Orphanage';
 
 @Component({
   selector: 'app-add-orphanage',
@@ -18,8 +20,11 @@ export class AddOrphanageComponent implements OnInit {
   // Formulário
   formulario: FormGroup;
 
-  imagesUpload: Set<File> = new Set();  // As que vão para o servidor
-  imagesPreview: (string | ArrayBuffer)[] = [];  // As que vão ficar a mostra para o usuário
+  // Imagens para preview e upload
+  imagesUpload: Set<File> = new Set();
+  imagesPreview: (string | ArrayBuffer)[] = [];
+
+  sub: Subscription;
 
 
   constructor(
@@ -32,18 +37,18 @@ export class AddOrphanageComponent implements OnInit {
 
     const phoneRegExp = /(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/g;
 
-    // Construindo o formulário
+    // Os campos do formulário devem seguir as propriedades do model "Orphanage.ts";
     this.formulario = this.formBuilder.group({
 
+      name: [ null, [ Validators.required ] ],
       orphanage_data: this.formBuilder.group({
-        name: [ null, [ Validators.required ] ],
         about: [ null, [ Validators.required ] ],
         phone: [ null, [ Validators.required, Validators.pattern(phoneRegExp) ] ],
-        // latitude: [ null ],
-        // longitude: [ null ],
+        latitude: [ 10.902345 ],
+        longitude: [ -53.12345 ],
       }),
 
-      visits: this.formBuilder.group({
+      orphanage_visits: this.formBuilder.group({
         instructions: [ null, [ Validators.required, Validators.maxLength(300) ] ],
         openning_hours: [ null, [ Validators.required ] ],
         open_on_weekends: [ false, [ Validators.required ] ],
@@ -55,35 +60,20 @@ export class AddOrphanageComponent implements OnInit {
 
 
   /**
-   * Método que irá fazer as requizições com o servidor
-   */
-  submit() {
-
-
-
-    console.log(valueSubmit);
-
-    // Enviar dados para o servidor, ja transformadas em json
-    this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit))
-    .subscribe(
-      dados => {
-        // Resetar o formulário
-        this.resetar();
-      }, ( erro: any ) => {
-        alert('Aconteceu um erro!');
-      }
-    );
-  }
-
-
-  /**
    * Evento disparado quando o usuário submeter o formulário
    */
   onSubmit(): void {
     if (  this.formulario.valid  ) {
 
-      const valueSubmit = this.formulario.value;
-      this.happyService.createOrphanage( valueSubmit );
+      const modelData = this.formulario.value;
+
+      this.sub = this.happyService.createOrphanage( modelData, this.imagesUpload )
+        .subscribe(
+          data => {
+            console.log(data);
+            this.formReset();
+          }, error => console.log(error)
+        );
 
     } else {
       this.verificarValidacoesForm(  this.formulario  );

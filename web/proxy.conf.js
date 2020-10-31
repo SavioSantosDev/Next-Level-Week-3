@@ -21,4 +21,4 @@ const PROXY_CONFIG = [
 
 // OBS: o package.json deverá ser modificado. E a partir daí em vez de: ng serve, rodar: npm run start.
 
-export default PROXY_CONFIG;
+module.exports = PROXY_CONFIG;

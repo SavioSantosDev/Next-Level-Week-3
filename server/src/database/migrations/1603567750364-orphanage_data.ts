@@ -19,7 +19,7 @@ export class orphanageData1603567750364 implements MigrationInterface {
                     type: 'varchar',
                 },
                 {
-                    name: 'latitute',
+                    name: 'latitude',
                     type: 'decimal',
                     scale: 10,  // Depois da virgua
                     precision: 2    // Antes da virgula
@@ -41,7 +41,7 @@ export class orphanageData1603567750364 implements MigrationInterface {
             ],
             foreignKeys: [
                 {
-                    name: 'OphanageData',
+                    name: 'orphanage_data',
                     columnNames: ['orphanage_id'],
                     referencedTableName: 'orphanages',
                     referencedColumnNames: ['id'],

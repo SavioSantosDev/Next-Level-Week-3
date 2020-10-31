@@ -12,13 +12,13 @@ export default class OrphanageVisits {
     instructions: string;
     
     @Column()
-    opening_hours: string;
+    openning_hours: string;
    
     @Column()
     open_on_weekends: boolean;
 
-    @OneToOne(() => Orphanage, orphanage => orphanage.orphanageVisits)
-    @JoinColumn({name: 'orphanage_id'})
+    @OneToOne(() => Orphanage, orphanage => orphanage.orphanage_visits)
+    @JoinColumn({ name: 'orphanage_id' })
     orphanage: Orphanage;
 
     // OBS: JoinColumn precisa ser definido somente em um lado da relação UM PARA UM.

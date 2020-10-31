@@ -1,22 +1,15 @@
 <section id="add-orphanage">
   <form [formGroup]='formulario'  (ngSubmit)="onSubmit()">
 
+    <legend><h1>Dados</h1></legend>
+
+    <!-- NAME -->
+    <div class="form-control">
+      <label for="name">Nome</label>
+      <input type="text" formControlName="name" id="name" aria-required="true" />
+    </div>
+
     <fieldset formGroupName="orphanage_data">
-      <legend><h1>Dados</h1></legend>
-
-      <!-- LATITUDE LONGITUDE -->
-      <div class="form-control">
-        <div class="map-routes">
-          <div class="map"></div>
-          <button type="button">Ver rotas no Google Maps</button>
-        </div>
-      </div>
-
-      <!-- NAME -->
-      <div class="form-control">
-        <label for="name">Nome</label>
-        <input type="text" formControlName="name" id="name" aria-required="true" />
-      </div>
 
       <!-- ABOUT -->
       <div class="form-control">
@@ -28,6 +21,14 @@
       <div class="form-control">
         <label for="phone">Número de WhatsApp</label>
         <input type="tel" formControlName="phone" id="phone" aria-required="true"/>
+      </div>
+
+      <!-- LATITUDE LONGITUDE -->
+      <div class="form-control">
+        <div class="map-routes">
+          <div class="map"></div>
+          <button type="button">Ver rotas no Google Maps</button>
+        </div>
       </div>
 
       <div class="form-control  upload-images">
@@ -57,7 +58,7 @@
       </div>
     </fieldset>
 
-    <fieldset formGroupName="visits">
+    <fieldset formGroupName="orphanage_visits">
       <legend><h1>Visitas</h1></legend>
 
       <div class="form-control">

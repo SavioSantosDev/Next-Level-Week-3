@@ -1,17 +1,16 @@
-export interface Orphanage {
-  id: number;
-  name: string;
-  latitude: number;
-  longitude: number;
-  about: string;
-  instructions: string;
-  opening_hours: string;
-  open_on_weekends: boolean,
-  images: Image[];
-}
+import OrphanageData from './OrphanageData';
+import OrphanageVisits from './OrphanageVisits';
+import OrphanageImages from './OrphanageImages';
 
+export default class Orphanage {
 
-interface Image {
-  id: number;
-  url: string;
+    id: number;
+
+    name: string;
+
+    orphanageData: OrphanageData;
+
+    orphanageVisits: OrphanageVisits;
+
+    orphanageImages: OrphanageImages[];
 }

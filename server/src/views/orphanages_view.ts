@@ -7,15 +7,19 @@ export default {
             id: orphanage.id,
             name: orphanage.name,
 
-            latitude: orphanage.orphanageData.latitude,
-            longitude: orphanage.orphanageData.longitude,
-            about: orphanage.orphanageData.about,
+            orphanage_data: {
+                phone: orphanage.orphanage_data.phone,
+                latitude: orphanage.orphanage_data.latitude,
+                longitude: orphanage.orphanage_data.longitude,
+                about: orphanage.orphanage_data.about,
+            },
+            orphanage_visits: {
+                instructions: orphanage.orphanage_visits.instructions,
+                opening_hours: orphanage.orphanage_visits.openning_hours,
+                open_on_weekend: orphanage.orphanage_visits.open_on_weekends,
+            },
 
-            instructions: orphanage.orphanageVisits.instructions,
-            opening_hours: orphanage.orphanageVisits.opening_hours,
-            open_on_weekend: orphanage.orphanageVisits.open_on_weekends,
-
-            images: ImagesView.renderMany(orphanage.orphanageImages)
+            images: ImagesView.renderMany(orphanage.orphanage_images)
         };
     },
 
