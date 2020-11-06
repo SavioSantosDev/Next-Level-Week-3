@@ -54,9 +54,9 @@ export class MapComponent {
    * Inicializa um marcador e adiciona-o ao mapa
    * As coordenadas do marcador serão configuradas com o método setMarkerPosition
    */
-  initializeMarker(): void {
+  initializeMarker(  lat = 0, lng = 0  ): void {
     this.orphanageMarker = new Marker(
-      [ 0, 0 ],
+      [ lat, lng ],
       {
         icon: icon({
           iconSize: [64, 72],

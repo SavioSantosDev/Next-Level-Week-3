@@ -22,8 +22,13 @@
 
     <div class="block">
       <div class="map-routes">
-        <div class="map"></div>
-        <button type="button">Ver rotas no Google Maps</button>
+        <div
+        id="map"
+        leaflet
+        (leafletMapReady)="onMapReady($event)"
+        [leafletOptions]="mapOptions"
+        ></div>
+        <a target="_blank" rel="noopener noreferrer" href='https://www.google.com/maps/dir/?api=1&destination={{ orphanage.orphanage_data.latitude }},{{ orphanage.orphanage_data.longitude }}'>Ver rotas no Google Maps</a>
       </div>
     </div>
 

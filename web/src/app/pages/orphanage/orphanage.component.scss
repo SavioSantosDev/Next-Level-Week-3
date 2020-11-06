@@ -53,17 +53,17 @@
     background-color: var(--low-blue);
     overflow: hidden;
 
-    .map {
-      background: pink;
+    #map {
       min-height: 40vh;
     }
 
-    button {
+    a {
       cursor: pointer;
       display: block;
       text-align: center;
       padding: 1rem;
       margin: 0 auto;
+      text-decoration: none;
 
       font-weight: bold;
       font-size: 20px;
