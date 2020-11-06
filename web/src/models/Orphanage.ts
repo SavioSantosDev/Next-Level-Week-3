@@ -5,12 +5,8 @@ import OrphanageImages from './OrphanageImages';
 export default class Orphanage {
 
     id: number;
-
     name: string;
-
-    orphanageData: OrphanageData;
-
-    orphanageVisits: OrphanageVisits;
-
-    orphanageImages: OrphanageImages[];
+    orphanage_data: OrphanageData;
+    orphanage_visits: OrphanageVisits;
+    orphanage_images: OrphanageImages[];
 }

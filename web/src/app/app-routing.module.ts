@@ -13,8 +13,8 @@ const routes: Routes = [
   {
     path: 'orfanato', component: OrphanageBaseComponent,
     children: [
-      { path: '', component: OrphanageComponent },
-      { path: 'cadastro', component: AddOrphanageComponent }
+      { path: 'cadastro', component: AddOrphanageComponent },
+      { path: ':id', component: OrphanageComponent },
     ]
   }
 ];

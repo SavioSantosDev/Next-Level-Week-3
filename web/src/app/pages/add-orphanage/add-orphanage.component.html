@@ -26,8 +26,14 @@
       <!-- LATITUDE LONGITUDE -->
       <div class="form-control">
         <div class="map-routes">
-          <div class="map"></div>
-          <button type="button">Ver rotas no Google Maps</button>
+          <div
+            id="map"
+            leaflet
+            (leafletMapReady)="onMapReady($event)"
+            [leafletOptions]="mapOptions"
+            (leafletClick)="setOrphanage($event)"
+          ></div>
+          <button type="button">Clique para adicionar o local do orfanato</button>
         </div>
       </div>
 

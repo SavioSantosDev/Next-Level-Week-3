@@ -5,6 +5,7 @@
   flex-direction: column;
   background-color: var(--shapes);
   padding-bottom: 2rem;
+  padding-top: 2rem;
 
   h1 { font-size: clamp(24px, 4vw, 36px); margin-bottom: 1rem; }
   h2 { font-size: clamp(20px, 4vw, 32px); margin-bottom: 1rem; }
@@ -17,6 +18,33 @@
     @media (min-width: 768px) { padding: 0 2rem; }
     @media (min-width: 992px) { padding: 0 3rem; }
     @media (min-width: 1200px) { padding: 0 4rem; }
+  }
+
+  .images-box {
+
+    img { object-fit: cover; }
+
+    .orphanage-images {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 1rem;
+
+      .img-active {
+        width: 100%;
+        height: 300px;
+        grid-column: 1 / span 5;
+      }
+
+      .img {
+        width: 100%;
+        height: 80px;
+        opacity: .6;
+
+        &.active { opacity: 1; }
+        &:hover { cursor: pointer; }
+      }
+
+    }
   }
 
   .map-routes {
@@ -94,6 +122,7 @@
     font-size: 20px;
     font-weight: bold;
     border-radius: 1rem;
+    text-decoration: none;
 
     img { margin-right: .5rem; }
 

@@ -19,7 +19,7 @@ export default {
                 open_on_weekend: orphanage.orphanage_visits.open_on_weekends,
             },
 
-            images: ImagesView.renderMany(orphanage.orphanage_images)
+            orphanage_images: ImagesView.renderMany(orphanage.orphanage_images)
         };
     },
 

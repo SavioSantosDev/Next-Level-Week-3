@@ -4,11 +4,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { NavActionsComponent } from './nav-actions/nav-actions.component';
 import { ControlErrorComponent } from './control-error/control-error.component';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   declarations: [
     NavActionsComponent,
-    ControlErrorComponent
+    ControlErrorComponent,
+    PopupComponent,
   ],
   imports: [
     CommonModule,
@@ -16,6 +18,9 @@ import { ControlErrorComponent } from './control-error/control-error.component';
   ],
   exports: [
     NavActionsComponent,
+  ],
+  entryComponents: [
+    PopupComponent
   ]
 })
 export class ComponentsModule { }

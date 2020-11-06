@@ -1,19 +1,23 @@
-<section id="orphanage">
+<section *ngIf="orphanage$ | async as orphanage; else loading" id="orphanage" >
 
-    <!-- <div class="block images-box">
-      <img src="../../../assets/orphanages-images/img (1).jpg" alt="happy">
-      <img src="../../../assets/orphanages-images/img (2).jpg" alt="happy">
-      <img src="../../../assets/orphanages-images/img (3).jpg" alt="happy">
-      <img src="../../../assets/orphanages-images/img (4).jpg" alt="happy">
-      <img src="../../../assets/orphanages-images/img (5).jpg" alt="happy">
-      <img src="../../../assets/orphanages-images/img (6).jpg" alt="happy">
-    </div> -->
+    <!-- Image principal vai ser trocada relativamente ao index das imagens clicadas -->
+    <div class="block images-box">
+      <div class="orphanage-images">
+        <img src="{{ orphanage.orphanage_images[imgActive].url }}" alt="{{ orphanage.name }}" class="img-active">
+        <img
+          *ngFor="let image of orphanage.orphanage_images; index as i"
+          src="{{ image.url }}"
+          alt="{{ orphanage.name }}"
+          (click)="imgActive = i"
+          class="img"
+          [class.active]="imgActive === i"
+        >
+      </div>
+    </div>
 
     <div class="block">
-      <h1>Orfanato Esperança</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti adipisci rem quasi odio.
-        Odio facere eos delectus harum nemo tempora eveniet quae suscipit
-        perferendis. Eum pariatur harum excepturi esse veniam.</p>
+      <h1>{{ orphanage.name }}</h1>
+      <p>{{ orphanage.orphanage_data.about}}</p>
     </div>
 
     <div class="block">
@@ -27,32 +31,38 @@
 
     <div class="block">
       <h2>Instruções para visita</h2>
-      <p>Venha e se sinta a vontade para dar muito amor e carinho.</p>
+      <p>{{ orphanage.orphanage_visits.instructions }}</p>
     </div>
 
     <div class="block orphanage-infos">
         <div class="card  openning-hours">
           <img src="../../../assets/icons/clock.svg" alt="openning-hours">
-          <h2>Segunda à Sexta: 8h às 18h</h2>
+          <h2>{{ orphanage.orphanage_visits.opening_hours }}</h2>
         </div>
 
-        <div class="card  open-on-weekends">
+        <div *ngIf="orphanage.orphanage_visits.open_on_weekend; else orphanageClosed" class="card  open-on-weekends">
           <img src="../../../assets/icons/alert-green.svg" alt="orphanage-open">
           <h2>Atendemos fim de semana</h2>
         </div>
 
-        <div class="card  close-on-weekends" [style.display]="'none'">
-          <img src="../../../assets/icons/alert-red.svg" alt="orphanage-closed">
-          <h2>Não atendemos fim de semana</h2>
-        </div>
+        <ng-template #orphanageClosed>
+          <div class="card  close-on-weekends">
+            <img src="../../../assets/icons/alert-red.svg" alt="orphanage-closed">
+            <h2>Não atendemos fim de semana</h2>
+          </div>
+        </ng-template>
+
     </div>
 
-
     <div class="block">
-      <button type="button" class="btn contact">
+      <a class="btn contact" href="https://api.whatsapp.com/send?phone={{ orphanage.orphanage_data.phone }}" target="_blank">
         <img src="../../../assets/icons/whatsapp.svg" alt="contato"> Entrar em contato
-      </button>
+      </a>
     </div>
 
 
 </section>
+
+<ng-template #loading>
+  <div>Carregando...</div>
+</ng-template>

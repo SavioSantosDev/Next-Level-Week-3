@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { LeafletMouseEvent, Map } from 'leaflet';
 import { Subscription } from 'rxjs';
 
 import { HappyService } from 'src/app/services/happy.service';
-import Orphanage from 'src/models/Orphanage';
+import { MapComponent } from 'src/app/shared/map/map.component';
 
 @Component({
   selector: 'app-add-orphanage',
   templateUrl: './add-orphanage.component.html',
   styleUrls: ['./add-orphanage.component.scss']
 })
-export class AddOrphanageComponent implements OnInit {
+export class AddOrphanageComponent extends MapComponent implements OnInit, OnDestroy {
 
   // Icones
   faPlus = faPlus;  // Adicionar imagem
@@ -30,10 +31,15 @@ export class AddOrphanageComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private happyService: HappyService,
-  ) { }
+  ) {
+    super();
+  }
 
 
   ngOnInit(): void {
+
+    // Inicializar as configurações do mapa e o marcador para ser configurado dentro do mapa;
+    this.initializeMapOptions();
 
     const phoneRegExp = /(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/g;
 
@@ -44,8 +50,8 @@ export class AddOrphanageComponent implements OnInit {
       orphanage_data: this.formBuilder.group({
         about: [ null, [ Validators.required ] ],
         phone: [ null, [ Validators.required, Validators.pattern(phoneRegExp) ] ],
-        latitude: [ 10.902345 ],
-        longitude: [ -53.12345 ],
+        latitude: [ null, [ Validators.required ] ],
+        longitude: [ null, [ Validators.required ] ],
       }),
 
       orphanage_visits: this.formBuilder.group({
@@ -59,6 +65,12 @@ export class AddOrphanageComponent implements OnInit {
   }
 
 
+  ngOnDestroy(): void {
+    // Desfazendo a incrição feita ao submeter o formulário
+    // tslint:disable-next-line: no-unused-expression
+    this.sub && this.sub.unsubscribe();
+  }
+
   /**
    * Evento disparado quando o usuário submeter o formulário
    */
@@ -70,7 +82,7 @@ export class AddOrphanageComponent implements OnInit {
       this.sub = this.happyService.createOrphanage( modelData, this.imagesUpload )
         .subscribe(
           data => {
-            console.log(data);
+            window.alert(`${this.formulario.get('name').value} Adicionado com sucesso`);
             this.formReset();
           }, error => console.log(error)
         );
@@ -129,6 +141,9 @@ export class AddOrphanageComponent implements OnInit {
   }
 
 
+  /**
+   * Trabalhar melhor essa função
+   */
   verificarValidacoesForm(  formGroup: FormGroup  ): void {
     console.log('alguma coisa está errada');
     // Object.keys(  formGroup.controls  ).forEach(  campo => {
@@ -140,10 +155,35 @@ export class AddOrphanageComponent implements OnInit {
 
 
   /**
-   * Resetar o formulário. Apagar todos os campos
+   * Resetar o formulário ao submeter com sucesso o submete-lo
    */
   formReset(): void {
     this.formulario.reset();
+  }
+
+
+  /**
+   * Método sobreposto da classe Map
+   */
+  onMapReady(  map: Map  ): void {
+    this.map = map;
+    this.initializeMarker();
+  }
+
+
+  /**
+   * Altera a posição do marcador do orfanato e os valores dos campos de coordenadas do formulário
+   */
+  setOrphanage(  e: LeafletMouseEvent  ): void {
+    const { lat, lng } = e.latlng;
+    this.setMarkerPosition(  lat, lng  );
+
+    this.formulario.patchValue({
+      orphanage_data: {
+        latitude: lat,
+        longitude: lng
+      }
+    });
   }
 
 }

@@ -49,9 +49,13 @@
   </div>
 
 
-  <main id="map" routerLink="../orfanato">
-
-  </main>
+  <main
+    id="map"
+    leaflet
+    [leafletOptions]="mapOptions"
+    [leafletLayers]="orphanagesMarker"
+    (leafletMapReady)="onMapReady($event)"
+  ></main>
 
 
   <button type="button" class="btn  add-orphanage" routerLink="../orfanato/cadastro">
