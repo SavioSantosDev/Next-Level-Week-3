@@ -74,7 +74,6 @@ export class MapComponent {
    * O marcador já criado
    */
   setMarkerPosition(  lat: number , lng: number  ): void {
-
     this.orphanageMarker.setLatLng([lat, lng]);
   }
 
